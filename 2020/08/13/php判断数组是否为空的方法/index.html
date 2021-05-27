@@ -2,7 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
-
+<head>
+  <style type="text/css">
+  h5 {text-align: right}
+  </style>
+</head>
 
 
 <head>
@@ -27,7 +31,7 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/solarized-light.min.css" />
   
 
   
@@ -167,7 +171,9 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-            </span>
+          </span>
+          
+          
 
             
               
@@ -202,10 +208,10 @@
   
   
     
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-post-views"></span> 次
       </span>
     
   
@@ -236,14 +242,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 小时前
+                  本文最后更新于：9 个月前
                 
               </p>
             
             <div class="markdown-body" id="post-body">
               <h1 id="php判断数组是否为空的方法"><a href="#php判断数组是否为空的方法" class="headerlink" title="php判断数组是否为空的方法"></a>php判断数组是否为空的方法</h1><p> 本文介绍了PHP开发中遇到的数组问题，这里介绍了判断PHP数组为空的5种方法，有需要的朋友可以借鉴参考一下。</p>
 <h3 id="1-isset功能：判断变量是否被初始化"><a href="#1-isset功能：判断变量是否被初始化" class="headerlink" title="1. isset功能：判断变量是否被初始化"></a>1. isset功能：判断变量是否被初始化</h3><p><strong>说明：它并不会判断变量是否为空，并且可以用来判断数组中元素是否被定义过<br>注意：当使用isset来判断数组元素是否被初始化过时，它的效率比array_key_exists高4倍左右</strong></p>
-<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
 $a = <span class="hljs-string">''</span>;
 $a[<span class="hljs-string">'c'</span>] = <span class="hljs-string">''</span>;
 <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($a)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 未被初始化'</span> . <span class="hljs-string">""</span>;
@@ -251,19 +257,19 @@ $a[<span class="hljs-string">'c'</span>] = <span class="hljs-string">''</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>($a[<span class="hljs-string">'c'</span>])) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 已经被初始化'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-comment">// 显示结果为</span>
 <span class="hljs-comment">// $b 未被初始化</span>
-<span class="hljs-comment">// $a 已经被初始化</span></code></pre>
+<span class="hljs-comment">// $a 已经被初始化</span></code></pre></div>
 <h3 id="2-empty功能：检测变量是否为”空”"><a href="#2-empty功能：检测变量是否为”空”" class="headerlink" title="2. empty功能：检测变量是否为”空”"></a>2. empty功能：检测变量是否为”空”</h3><p>说明：任何一个未初始化的变量、值为 0 或 false 或 空字符串”” 或 null的变量、空数组、没有任何属性的对象，都将判断为empty==true</p>
 <p>注意1：未初始化的变量也能被empty检测为”空”<br>注意2：empty只能检测变量，而不能检测语句</p>
-<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
 $a = <span class="hljs-number">0</span>;
 $b = <span class="hljs-string">''</span>;
 $c = <span class="hljs-keyword">array</span>();
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($a)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 为空'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($b)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$b 为空'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($c)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$c 为空'</span> . <span class="hljs-string">""</span>;
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($d)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$d 为空'</span> . <span class="hljs-string">""</span>;</code></pre>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>($d)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$d 为空'</span> . <span class="hljs-string">""</span>;</code></pre></div>
 <h3 id="3-var-null功能：判断变量是否为”空”"><a href="#3-var-null功能：判断变量是否为”空”" class="headerlink" title="3. var == null功能：判断变量是否为”空”"></a>3. var == null功能：判断变量是否为”空”</h3><p>说明：值为 0 或 false 或 空字符串”” 或 null的变量、空数组、都将判断为 null</p>
-<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
 $a = <span class="hljs-number">0</span>;
 $b = <span class="hljs-keyword">array</span>();
 <span class="hljs-keyword">if</span> ($a == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 为空'</span> . <span class="hljs-string">""</span>;
@@ -272,9 +278,9 @@ $b = <span class="hljs-keyword">array</span>();
 <span class="hljs-comment">// 显示结果为</span>
 <span class="hljs-comment">// $a 为空</span>
 <span class="hljs-comment">// $b 为空</span>
-<span class="hljs-comment">// Undefined variable: c</span></code></pre>
+<span class="hljs-comment">// Undefined variable: c</span></code></pre></div>
 <h3 id="4-is-null功能：检测变量是否为”null”"><a href="#4-is-null功能：检测变量是否为”null”" class="headerlink" title="4. is_null功能：检测变量是否为”null”"></a>4. is_null功能：检测变量是否为”null”</h3><p>说明：当变量被赋值为”null”时，检测结果为true</p>
-<p> 注意1：null不区分大小写：$a = null; $a = NULL 没有任何区别<br> 注意2：仅在变量的值为”null”时，检测结果才为true，0、空字符串、false、空数组都检测为false<br> 注意3：变量未初始化时，程序将会报错<br> <pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<p> 注意1：null不区分大小写：$a = null; $a = NULL 没有任何区别<br> 注意2：仅在变量的值为”null”时，检测结果才为true，0、空字符串、false、空数组都检测为false<br> 注意3：变量未初始化时，程序将会报错<br> <div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
 $a = <span class="hljs-keyword">null</span>;
 $b = <span class="hljs-keyword">false</span>;
 <span class="hljs-keyword">if</span> (is_null($a)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 为NULL'</span> . <span class="hljs-string">""</span>;
@@ -282,26 +288,26 @@ $b = <span class="hljs-keyword">false</span>;
 <span class="hljs-keyword">if</span> (is_null($c)) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$c 为NULL'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-comment">// 显示结果为</span>
 <span class="hljs-comment">// $a 为NULL</span>
-<span class="hljs-comment">// Undefined variable: c</span></code></pre></p>
+<span class="hljs-comment">// Undefined variable: c</span></code></pre></div></p>
 <h3 id="5-var-null功能：检测变量是否为”null”，同时变量的类型也必须是”null”"><a href="#5-var-null功能：检测变量是否为”null”，同时变量的类型也必须是”null”" class="headerlink" title="5. var === null功能：检测变量是否为”null”，同时变量的类型也必须是”null”"></a>5. var === null功能：检测变量是否为”null”，同时变量的类型也必须是”null”</h3><p>说明：当变量被赋值为”null”时，同时变量的类型也是”null”时，检测结果为true</p>
 <p>注意1：在判断为”null”上，全等于和is_null的作用相同<br>注意2：变量未初始化时，程序将会报错</p>
-<pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
+<div class="hljs"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span>
 $a = <span class="hljs-number">0</span>;
 $b = <span class="hljs-keyword">array</span>();
 $b = <span class="hljs-keyword">null</span>;
 <span class="hljs-keyword">if</span> ($a === <span class="hljs-keyword">null</span>) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$a 为空'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-keyword">if</span> ($b === <span class="hljs-keyword">null</span>) <span class="hljs-keyword">echo</span> <span class="hljs-string">'$b 为空'</span> . <span class="hljs-string">""</span>;
 <span class="hljs-comment">// 显示结果</span>
-<span class="hljs-comment">// $b 为空</span></code></pre>
+<span class="hljs-comment">// $b 为空</span></code></pre></div>
 <h3 id="6-count-方法"><a href="#6-count-方法" class="headerlink" title="6. count()方法"></a>6. count()方法</h3><p>count — 计算数组中的单元数目或对象中的属性个数<br>int count ( mixed $var [, int $mode = COUNT_NORMAL ] )<br>返回 var 中的单元数目。 如果 var 不是数组类型或者实现了 Countable 接口的对象，将返回 1，有一个例外，如果 var 是 NULL 则结果是 0。</p>
-<pre><code class="hljs php">$a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+<div class="hljs"><pre><code class="hljs php">$a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
 $a[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;
 $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
 <span class="hljs-keyword">echo</span> count($a).<span class="hljs-string">'&lt;br/&gt;'</span>;<span class="hljs-comment">//3</span>
 <span class="hljs-keyword">echo</span> count(<span class="hljs-keyword">null</span>).<span class="hljs-string">'&lt;br/&gt;'</span>;<span class="hljs-comment">//0</span>
 <span class="hljs-keyword">echo</span> count(<span class="hljs-keyword">true</span>).<span class="hljs-string">'&lt;br/&gt;'</span>;<span class="hljs-comment">//1</span>
 <span class="hljs-comment">//不是数组或者没实现Countable接口，结果就是1</span>
-<span class="hljs-keyword">echo</span> count(<span class="hljs-string">"abc"</span>).<span class="hljs-string">'&lt;br/&gt;'</span>;<span class="hljs-comment">//1</span></code></pre>
+<span class="hljs-keyword">echo</span> count(<span class="hljs-string">"abc"</span>).<span class="hljs-string">'&lt;br/&gt;'</span>;<span class="hljs-comment">//1</span></code></pre></div>
 <p>*count($var)   -如果$var是数组，则返回数组中值的个数，如果是对象，就返回对象中属性的个数。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>PHP中，”NULL” 和 “空” 是2个概念。<br>isset 主要用来判断变量是否被初始化过<br>empty 可以将值为 “假”、”空”、”0″、”NULL”、”未初始化” 的变量都判断为TRUE<br>is_null 仅把值为 “NULL” 的变量判断为TRUE<br>var == null 把值为 “假”、”空”、”0″、”NULL” 的变量都判断为TRUE<br>var === null 仅把值为 “NULL” 的变量判断为TRUE</p>
 <p>注意：在判断一个变量是否真正为”NULL”时，大多使用 is_null，从而避免”false”、”0″等值的干扰。</p>
@@ -355,21 +361,30 @@ $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
               <article class="comments" id="comments">
                 
                 
+  <div id="vcomments"></div>
   <script type="text/javascript">
-    function loadUtterances() {
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'qiliq / qiliq.github.io');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', 'github-light');
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "9UGF9hYRvWdEtAavR7Gp1z0h-gzGzoHsz",
+          app_key: "knEkT2RqOFnVa5S1BIdqmyWE",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://9ugf9hyr.lc-cn-n1-shared.com",
+        });
+      });
     }
-    waitElementVisible('comments', loadUtterances)
+    waitElementVisible('vcomments', loadValine);
   </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </article>
@@ -427,16 +442,22 @@ $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
   
 
   
+    <!--动态线条背景-->
+    <script type="text/javascript" color="0,0,0" opacity="0.8" 
+        zIndex="-1" count="300" 
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+  
+
+  
 
   
 
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+      <a href="https://github.com/qiliq" target="_blank" rel="nofollow noopener">
+        <span>©2020 QLQ</span></a>
     </div>
     
   <div class="statistics">
@@ -467,6 +488,44 @@ $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
     
 
     
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("07/08/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+    <div>
+      <span>Power By</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <span>&</span>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>    
+    </div>
   </div>
 </footer>
 
@@ -524,23 +583,31 @@ $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "php判断数组是否为空的方法&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+  <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 
+  <script>
+    function typing(id, title){
+        var typed = new Typed('#' + id, {
+            strings: [
+              '  ',
+              title + "&nbsp;",
+            ],
+            cursorChar: "",
+            typeSpeed: 70,
+            loop: false,
+        });
+        typed.stop();
+        $(document).ready(function () {
+            $(".typed-cursor").addClass("h2");
+            typed.start();
+        });
+    }
+
+    
+        typing("subtitle", "php判断数组是否为空的方法")
+    
+
+  </script>
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
@@ -592,27 +659,67 @@ $a[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
 
 
 
-
-
-
-
-
-
-
-
-
-
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?faae1a1f4bcb0f94daa6f90e5af5bd5f";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
     </script>
+  
+
+
+
+
+
+
+
+
+
+
+
   
 
   

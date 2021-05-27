@@ -2,7 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
-
+<head>
+  <style type="text/css">
+  h5 {text-align: right}
+  </style>
+</head>
 
 
 <head>
@@ -27,7 +31,7 @@
 
   
     
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/solarized-light.min.css" />
   
 
   
@@ -167,7 +171,9 @@
           <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
-            </span>
+          </span>
+          
+          
 
             
               
@@ -202,10 +208,10 @@
   
   
     
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-post-views-container" class="post-meta" style="display: none">
         <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
+        <span id="leancloud-post-views"></span> 次
       </span>
     
   
@@ -236,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：14 分钟前
+                  本文最后更新于：9 个月前
                 
               </p>
             
@@ -286,9 +292,9 @@
 <h1 id="升级日志"><a href="#升级日志" class="headerlink" title="升级日志"></a>升级日志</h1><blockquote>
 <h1 id="注"><a href="#注" class="headerlink" title="注"></a><i class="fas fa-exclamation-triangle"></i>注</h1><p>如果您从较老版本的小书匠升级，内置数据库会有不兼容问题，建议在升级前进行数据导出备份，或者数据库文件备份，防止升级失败。</p>
 <p><strong>数据库文件路径</strong></p>
-<pre><code class="hljs groovy"><span class="hljs-string">Windows:</span> %LOCALAPPDATA%<span class="hljs-regexp">/storywriter/</span> 
+<div class="hljs"><pre><code class="hljs groovy"><span class="hljs-string">Windows:</span> %LOCALAPPDATA%<span class="hljs-regexp">/storywriter/</span> 
 <span class="hljs-string">Mac:</span> <span class="hljs-regexp">~/Library/</span>Application
-Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">Linux:</span> <span class="hljs-regexp">~/.config/</span>storywriter </code></pre>
+Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">Linux:</span> <span class="hljs-regexp">~/.config/</span>storywriter </code></pre></div>
 </blockquote>
 <h2 id="8-2-4"><a href="#8-2-4" class="headerlink" title="8.2.4"></a>8.2.4</h2><h3 id="8-2-4-修改"><a href="#8-2-4-修改" class="headerlink" title="8.2.4 修改"></a>8.2.4 修改</h3><ol>
 <li>pdf导出附件资源顺序和内容紊乱 #1392</li>
@@ -486,12 +492,12 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
 <ol start="2">
 <li>默认主题下添加直排显示效果的引用块</li>
 </ol>
-<pre><code class="hljs dust"><span class="xml">&gt; <span class="hljs-comment">&lt;!--</span></span><span class="hljs-template-variable">&#123;.markdown_vertical&#125;</span><span class="xml"><span class="hljs-comment">--&gt;</span></span>
+<div class="hljs"><pre><code class="hljs dust"><span class="xml">&gt; <span class="hljs-comment">&lt;!--</span></span><span class="hljs-template-variable">&#123;.markdown_vertical&#125;</span><span class="xml"><span class="hljs-comment">--&gt;</span></span>
 <span class="xml">&gt; 只要在引用块的第一行上添加 `<span class="hljs-comment">&lt;!--</span></span><span class="hljs-template-variable">&#123;.markdown_vertical&#125;</span><span class="xml"><span class="hljs-comment">--&gt;</span>` ,系统就会自动切换成直排显示效果</span>
 <span class="xml">&gt;</span>
 <span class="xml">&gt; **注**: 该样式目前只在默认主题下生效,其他主题需要用户自己自定义 css 样式实现.</span>
 <span class="xml">&gt; 同时如果当前使用的字体,浏览器不支持直排显示效果的话,该功能也会失效, 对本地客户端的打印和 pdf 也有影响</span>
-<span class="xml">&gt; 不过不会影响联网版的 pdf 打印.</span></code></pre>
+<span class="xml">&gt; 不过不会影响联网版的 pdf 打印.</span></code></pre></div>
 
 <h3 id="8-0-2-修改"><a href="#8-0-2-修改" class="headerlink" title="8.0.2 修改"></a>8.0.2 修改</h3><ol>
 <li>块级引用内的标题，不再计入生成的大纲/Toc 范围内</li>
@@ -650,21 +656,30 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
               <article class="comments" id="comments">
                 
                 
+  <div id="vcomments"></div>
   <script type="text/javascript">
-    function loadUtterances() {
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'qiliq / qiliq.github.io');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', 'github-light');
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "9UGF9hYRvWdEtAavR7Gp1z0h-gzGzoHsz",
+          app_key: "knEkT2RqOFnVa5S1BIdqmyWE",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: true,
+          serverURLs: "https://9ugf9hyr.lc-cn-n1-shared.com",
+        });
+      });
     }
-    waitElementVisible('comments', loadUtterances)
+    waitElementVisible('vcomments', loadValine);
   </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </article>
@@ -722,16 +737,22 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
   
 
   
+    <!--动态线条背景-->
+    <script type="text/javascript" color="0,0,0" opacity="0.8" 
+        zIndex="-1" count="300" 
+        src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+  
+
+  
 
   
 
   <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+      <a href="https://github.com/qiliq" target="_blank" rel="nofollow noopener">
+        <span>©2020 QLQ</span></a>
     </div>
     
   <div class="statistics">
@@ -762,6 +783,44 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
     
 
     
+    <div>
+      <span id="timeDate">载入天数...</span>
+      <span id="times">载入时分秒...</span>
+      <script>
+      var now = new Date();
+      function createtime(){
+          var grt= new Date("07/08/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+          now.setTime(now.getTime()+250);
+          days = (now - grt ) / 1000 / 60 / 60 / 24;
+          dnum = Math.floor(days);
+          hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+          hnum = Math.floor(hours);
+          if(String(hnum).length ==1 ){
+              hnum = "0" + hnum;
+          }
+          minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+          mnum = Math.floor(minutes);
+          if(String(mnum).length ==1 ){
+                    mnum = "0" + mnum;
+          }
+          seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+          snum = Math.round(seconds);
+          if(String(snum).length ==1 ){
+                    snum = "0" + snum;
+          }
+          document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+          document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+      }
+      setInterval("createtime()",250);
+      </script>
+    </div>
+    <div>
+      <span>Power By</span>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <span>&</span>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>    
+    </div>
   </div>
 </footer>
 
@@ -819,23 +878,31 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "更新内容&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
+  <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 
+  <script>
+    function typing(id, title){
+        var typed = new Typed('#' + id, {
+            strings: [
+              '  ',
+              title + "&nbsp;",
+            ],
+            cursorChar: "",
+            typeSpeed: 70,
+            loop: false,
+        });
+        typed.stop();
+        $(document).ready(function () {
+            $(".typed-cursor").addClass("h2");
+            typed.start();
+        });
+    }
+
+    
+        typing("subtitle", "更新内容")
+    
+
+  </script>
 
 
   <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
@@ -887,27 +954,67 @@ Support<span class="hljs-regexp">/storywriter/</span> <span class="hljs-string">
 
 
 
-
-
-
-
-
-
-
-
-
-
   
-    <!-- Baidu Analytics -->
-    <script defer>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?faae1a1f4bcb0f94daa6f90e5af5bd5f";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
     </script>
+  
+
+
+
+
+
+
+
+
+
+
+
   
 
   
